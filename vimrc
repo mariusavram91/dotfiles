@@ -67,6 +67,9 @@ set laststatus=2
 " Show line numbers
 set number
 
+" Visual autocomplete for command menu
+set wildmenu
+
 " Linebreak
 set lbr
 set cc=80
@@ -75,6 +78,7 @@ set wrap
 
 " Ignore case and highlight when searching
 set ignorecase
+set incsearch
 set hlsearch
 
 " Auto indent and smart indent
@@ -92,11 +96,15 @@ set softtabstop=4
 set expandtab
 set smarttab
 
+" % to bounce from do to end etc.
+runtime! macros/matchit.vim
+
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType json setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 " Mappings
+let mapleader=" "
 silent! map <F3> :NERDTreeToggle<CR>
 silent! map <F4> :SyntasticToggleMode<CR>
 silent! nmap <F8> :TagbarToggle<CR>
@@ -127,3 +135,8 @@ augroup  resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+
+" Highlight current cursor line number
+hi CursorLineNR cterm=bold
+hi CursorLine cterm=bold ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+set cursorline
